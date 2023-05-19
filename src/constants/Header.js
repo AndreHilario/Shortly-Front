@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <HeaderContainer>
             <StyledLink color="#5D9040">Entrar</StyledLink>
-            <StyledLink color="#9C9C9C">Cadastrar-se</StyledLink>
+            <StyledLink to={"/signup"} color="#9C9C9C">Cadastrar-se</StyledLink>
         </HeaderContainer>
     );
 }

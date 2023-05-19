@@ -32,10 +32,8 @@ const MainContent = styled.div`
     border-radius: 24px 24px 0px 0px;
     padding: 19px 40px;
     p {
-        font-family: 'Lexend Deca';
-        font-style: normal;
         font-size: 22px;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 28px;
         letter-spacing: 0em;
         text-align: left;
@@ -47,8 +45,6 @@ const FooterContent = styled.footer`
     justify-content: center;
     height: 45px;
     margin-top: 87px;
-    font-family: 'Lexend Deca';
-    font-style: normal;
     font-weight: 700;
     font-size: 36px;
     line-height: 45px;

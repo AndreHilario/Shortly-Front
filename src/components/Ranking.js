@@ -20,15 +20,9 @@ const RankingContainer = styled.div`
     h1 {
         width: 153px;
         height: 45px;
-
-        font-family: 'Lexend Deca';
-        font-style: normal;
         font-weight: 700;
         font-size: 36px;
         line-height: 45px;
-
-
         color: #000000;
-
     }
 `
