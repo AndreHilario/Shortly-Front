@@ -4,7 +4,7 @@ import styled from "styled-components"
 export default function Header() {
     return (
         <HeaderContainer>
-            <StyledLink color="#5D9040">Entrar</StyledLink>
+            <StyledLink to={"/signin"} color="#5D9040">Entrar</StyledLink>
             <StyledLink to={"/signup"} color="#9C9C9C">Cadastrar-se</StyledLink>
         </HeaderContainer>
     );
