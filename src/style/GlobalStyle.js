@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
     * {
         font-family: 'Lexend Deca';
         font-style: normal;
+        background-color: #fff;
     }
     button {
         width: 182px;
