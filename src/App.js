@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes } from "react-router-dom";
-import styled from "styled-components"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
+import HomePage from "./pages/HomePage/HomePage";
 
 export default function App() {
 
@@ -7,7 +8,7 @@ export default function App() {
     <PagesContainer>
       <BrowserRouter>
         <Routes>
-          
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>
@@ -15,6 +16,6 @@ export default function App() {
 }
 
 const PagesContainer = styled.main`
-  background-color: #FFFFFF;
+  
 `;
 

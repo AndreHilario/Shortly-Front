@@ -18,7 +18,13 @@ const GlobalStyle = createGlobalStyle`
 
     }
     a {
-
+        font-family: 'Lexend Deca';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        text-decoration: none;
+        padding-top: 30px;
     }
     :disabled {
 
