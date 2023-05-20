@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import styled from "styled-components"
+import { UserContext } from "../contexts/UserContext";
 
 export default function Welcome() {
+
+    const { user } = useContext(UserContext);
+
     return (
         <WelcomeContent>
-            <h3>Seja bem-vindo(a), Pessoa!</h3>
+            <h3>Seja bem-vindo(a), {user.name}!</h3>
         </WelcomeContent>
     )
 }

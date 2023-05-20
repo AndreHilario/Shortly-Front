@@ -27,9 +27,9 @@ export default function LoginForm() {
 
         apiAuth.login(form)
             .then((res) => {
-                const { name, token } = res.data;
-                setUser({ name, token });
-                localStorage.setItem("user", JSON.stringify({ name, token }));
+                const { token } = res.data;              
+                setUser({ token });
+                localStorage.setItem("user", JSON.stringify({ token }));
                 setDisabled(false);
                 navigate("/urls");
 
@@ -63,7 +63,7 @@ export default function LoginForm() {
                     disabled={disabled}
                     required
                 />
-                <button type="submit">Entrar</button>
+                <button type="submit" disabled={disabled}>Entrar</button>
             </form>
         </LoginPageContent>
     )

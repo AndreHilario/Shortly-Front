@@ -14,10 +14,27 @@ function login(form) {
     return promise;
 };
 
+function getConfig(token) {
+    return {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+};
 
+function getUrlsUser(token) {
 
+    const config = getConfig(token);
+    const response = axios.get(`${port}/users/me`, config);
 
+    return response;
 
+};
 
-const apiAuth = { signup, login };
+function postShortenUrl(token, form) {
+
+    const config = getConfig(token);
+    const promise = axios.post(`${port}/urls/shorten`, form, config);
+
+    return promise;
+}
+const apiAuth = { signup, login, getUrlsUser, postShortenUrl };
 export default apiAuth;

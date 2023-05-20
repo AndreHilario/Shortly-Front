@@ -1,37 +1,75 @@
 import styled from "styled-components";
 import trash from "../../assets/Trash.png";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import apiAuth from "../../services/apiAuth";
 
 export default function MenuUrlPage() {
-    return (
-      <MenuUrlContainer>
-        <UrlWrapper>
-          <ShowUrls>
-            <p>Texto 1</p>
-            <p>TExto 2</p>
-            <p>Texto 3</p>
-          </ShowUrls>
-          <DeleteUrls>
-            <img src={trash} alt="Trash icon" />
-          </DeleteUrls>
-        </UrlWrapper>
-      </MenuUrlContainer>
-    );
-  }
-  
-  const MenuUrlContainer = styled.main`
+
+  const [urlContent, setUrlContent] = useState([]);
+
+  const { user, setUser } = useContext(UserContext);
+  console.log(user)
+  useEffect(() => {
+
+    apiAuth
+      .getUrlsUser(user.token)
+      .then((res) => {
+        setUrlContent(res.data);
+        const { name } = res.data;
+        setUser({ name, token: user.token })
+      })
+      .catch((err) => {
+        alert(err.response.data);
+      });
+  }, [user.token]);
+
+
+
+  return (
+    <MenuUrlContainer>
+      <UrlWrapper>
+        {urlContent && urlContent.shortenedUrls && urlContent.shortenedUrls.length > 0 ? (
+          urlContent.shortenedUrls.map((url) => (
+            <span key={url.id}>
+              <ShowUrls>
+                <p>{url.url}</p>
+                <p>{url.shortUrl}</p>
+                <p>{url.visitCount}</p>
+              </ShowUrls>
+              <DeleteUrls>
+                <img src={trash} alt="Trash icon" />
+              </DeleteUrls>
+            </span>
+          ))
+        ) : (
+          <p>No URLs found!</p>
+        )}
+      </UrlWrapper>
+    </MenuUrlContainer>
+  );
+}
+
+const MenuUrlContainer = styled.main`
     display: flex;
     flex-direction: column; 
     align-items: center;
     gap: 42px; 
     margin-top: 60px;
   `;
-  
-  const UrlWrapper = styled.div`
+
+const UrlWrapper = styled.div`
     display: flex;
     align-items: center;
+    flex-direction: column;
+    gap: 41px;
+    margin-bottom: 50px;
+    span {
+      display: flex;
+    }
   `;
-  
-  const ShowUrls = styled.div`
+
+const ShowUrls = styled.div`
     width: 887px;
     height: 60px;
     background: #80CC74;
@@ -50,8 +88,8 @@ export default function MenuUrlPage() {
       margin-right: 10px;
     }
   `;
-  
-  const DeleteUrls = styled.div`
+
+const DeleteUrls = styled.div`
     width: 130px;
     height: 60px;
     background-color: #FFFFFF;
