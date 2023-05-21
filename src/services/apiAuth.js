@@ -60,5 +60,12 @@ function deleteUrls(token, id) {
 
     return response;
 }
-const apiAuth = { signup, login, getUrlsUser, postShortenUrl, getRankingUser, getRanking, deleteUrls };
+
+function openUrl(shortUrl) {
+
+    const response = axios.get(`${port}/urls/open/${shortUrl}`);
+
+    return response;
+}
+const apiAuth = { signup, login, getUrlsUser, postShortenUrl, getRankingUser, getRanking, deleteUrls, openUrl };
 export default apiAuth;

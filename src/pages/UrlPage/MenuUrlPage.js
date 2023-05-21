@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { MenuUrlContainer, UrlWrapper, ShowUrls, DeleteUrls } from "./styledMenuUrl";
 import trash from "../../assets/Trash.png";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
@@ -35,7 +35,13 @@ export default function MenuUrlPage() {
       .catch(err => alert(err.response.data));
   }
 
+  function openOneUrl(shortUrl) {
 
+    apiAuth
+      .openUrl(shortUrl)
+      .then(console.log("Url opened"))
+      .catch(err => console.log(err))
+  }
 
   return (
     <MenuUrlContainer>
@@ -45,7 +51,7 @@ export default function MenuUrlPage() {
             <span key={url.id}>
               <ShowUrls>
                 <p>{url.url}</p>
-                <p>{url.shortUrl}</p>
+                <p onClick={() => openOneUrl(url.shortUrl)}>{url.shortUrl}</p>
                 <p>{url.visitCount}</p>
               </ShowUrls>
               <DeleteUrls>
@@ -60,54 +66,3 @@ export default function MenuUrlPage() {
     </MenuUrlContainer>
   );
 }
-
-const MenuUrlContainer = styled.main`
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    gap: 42px; 
-    margin-top: 60px;
-  `;
-
-const UrlWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 41px;
-    margin-bottom: 50px;
-    span {
-      display: flex;
-    }
-  `;
-
-const ShowUrls = styled.div`
-    width: 887px;
-    height: 60px;
-    background: #80CC74;
-    box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
-    border-radius: 12px 0px 0px 12px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    p {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 18px;
-      color: #FFFFFF;
-      background-color: #80CC74;
-      padding: 10px 15px;
-      margin-right: 10px;
-    }
-  `;
-
-const DeleteUrls = styled.div`
-    width: 130px;
-    height: 60px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
-    border-radius: 0px 12px 12px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  `;
