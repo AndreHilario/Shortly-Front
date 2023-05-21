@@ -1,13 +1,35 @@
-import styled from "styled-components"
+import { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
+import apiAuth from "../../services/apiAuth";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function MenuRankingPage() {
+
+    const [ranking, setRanking] = useState([]);
+
+    const { user } = useContext(UserContext);
+
+    useEffect(() => {
+
+        apiAuth
+            .getRankingUser(user.token)
+            .then((res) => {
+                setRanking(res.data)
+            })
+            .catch(err => alert(err.response.data))
+    }, [user.token])
     return (
         <MenuRankingPageContainer>
-            <RankingPageContent>
-                <p>2. Ciclano - 20 links - 1.113.347 visualizações</p>
-            </RankingPageContent>
 
-        </MenuRankingPageContainer>
+            {ranking.map((row, index) => {
+                return (
+                    <span key={row.id}>
+                        <p>{index + 1}. {row.name} - {row.linksCount} links - {row.visitCount} visualizações</p>
+                    </span>
+                )
+            })}
+
+        </MenuRankingPageContainer >
 
     )
 }
@@ -16,11 +38,6 @@ const MenuRankingPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 57px;
-`;
-
-const RankingPageContent = styled.main`
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     background-color: #FFFFFF;
     width: 1017px;
@@ -29,6 +46,7 @@ const RankingPageContent = styled.main`
     box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
     border-radius: 24px 24px 0px 0px;
     padding: 19px 40px;
+    gap: 15px;
     p {
         font-size: 22px;
         font-weight: 400;

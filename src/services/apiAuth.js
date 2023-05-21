@@ -36,5 +36,21 @@ function postShortenUrl(token, form) {
 
     return promise;
 }
-const apiAuth = { signup, login, getUrlsUser, postShortenUrl };
+
+function getRankingUser(token) {
+
+    const config = getConfig(token);
+    const response = axios.get(`${port}/ranking`, config);
+
+    return response;
+
+}
+
+function getRanking() {
+
+    const response = axios.get(`${port}/ranking`);
+
+    return response;
+}
+const apiAuth = { signup, login, getUrlsUser, postShortenUrl, getRankingUser, getRanking };
 export default apiAuth;

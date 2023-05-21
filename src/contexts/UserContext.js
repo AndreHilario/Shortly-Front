@@ -15,7 +15,7 @@ export default function UserProvider({ children }) {
         navigate("/");
       }
     }
-  }, [user, navigate, location]);
+  }, [localSUser, user, navigate, location]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

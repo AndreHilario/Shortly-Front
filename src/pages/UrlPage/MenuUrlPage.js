@@ -9,7 +9,7 @@ export default function MenuUrlPage() {
   const [urlContent, setUrlContent] = useState([]);
 
   const { user, setUser } = useContext(UserContext);
-  console.log(user)
+  
   useEffect(() => {
 
     apiAuth
@@ -22,7 +22,7 @@ export default function MenuUrlPage() {
       .catch((err) => {
         alert(err.response.data);
       });
-  }, [user.token]);
+  }, [user.token, setUser]);
 
 
 
