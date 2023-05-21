@@ -9,7 +9,7 @@ export default function MenuUrlPage() {
   const [urlContent, setUrlContent] = useState([]);
 
   const { user, setUser } = useContext(UserContext);
-  
+
   useEffect(() => {
 
     apiAuth
@@ -23,6 +23,17 @@ export default function MenuUrlPage() {
         alert(err.response.data);
       });
   }, [user.token, setUser]);
+
+  function deleteUrls(urlId) {
+
+    apiAuth
+      .deleteUrls(user.token, urlId)
+      .then(() => {
+        console.log("Url deleted");
+        window.location.reload();
+      })
+      .catch(err => alert(err.response.data));
+  }
 
 
 
@@ -38,7 +49,7 @@ export default function MenuUrlPage() {
                 <p>{url.visitCount}</p>
               </ShowUrls>
               <DeleteUrls>
-                <img src={trash} alt="Trash icon" />
+                <img onClick={() => deleteUrls(url.id)} src={trash} alt="Trash icon" />
               </DeleteUrls>
             </span>
           ))
@@ -98,4 +109,5 @@ const DeleteUrls = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   `;

@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 14px;
         line-height: 18px;
         color: #FFFFFF;
+        cursor: pointer;
     }
     input {
         font-size: 14px;
@@ -30,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
         outline: none;
         padding: 15px;
         margin: 1px;
+        cursor: pointer;
         :focus {
             border: 2px solid #5D9040;
             margin: 0px;

@@ -52,5 +52,13 @@ function getRanking() {
 
     return response;
 }
-const apiAuth = { signup, login, getUrlsUser, postShortenUrl, getRankingUser, getRanking };
+
+function deleteUrls(token, id) {
+
+    const config = getConfig(token);
+    const response = axios.delete(`${port}/urls/${id}`, config);
+
+    return response;
+}
+const apiAuth = { signup, login, getUrlsUser, postShortenUrl, getRankingUser, getRanking, deleteUrls };
 export default apiAuth;
