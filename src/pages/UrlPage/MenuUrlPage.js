@@ -40,7 +40,7 @@ export default function MenuUrlPage() {
     apiAuth
       .openUrl(shortUrl)
       .then(console.log("Url opened"))
-      .catch(err => console.log(err))
+      .catch(err => alert(err))
   }
 
   return (
